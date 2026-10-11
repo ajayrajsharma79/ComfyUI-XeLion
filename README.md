@@ -1,4 +1,4 @@
-# Xe Lion's ComfyUI Nodes
+# ComfyUI Nodes by Xe Lion
 
 ## Multi LoRA Schedule
 
