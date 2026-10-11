@@ -1,0 +1,710 @@
+{
+  "id": "fa7f1913-60ae-4ea8-bcf3-1af339d547b7",
+  "revision": 0,
+  "last_node_id": 12071,
+  "last_link_id": 121,
+  "nodes": [
+    {
+      "id": 12015,
+      "type": "PairConditioningSetProperties",
+      "pos": [
+        193.1722850643883,
+        -173.4928881050124
+      ],
+      "size": [
+        290.55499709574997,
+        162
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "positive_NEW",
+          "type": "CONDITIONING",
+          "link": 121
+        },
+        {
+          "name": "negative_NEW",
+          "type": "CONDITIONING",
+          "link": 41
+        },
+        {
+          "name": "mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": null
+        },
+        {
+          "name": "hooks",
+          "shape": 7,
+          "type": "HOOKS",
+          "link": 114
+        },
+        {
+          "name": "timesteps",
+          "shape": 7,
+          "type": "TIMESTEPS_RANGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            42
+          ]
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            43
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.39.2",
+        "Node name for S&R": "PairConditioningSetProperties"
+      },
+      "widgets_values": [
+        1,
+        "default"
+      ],
+      "widgets_values_named": {
+        "strength": 1,
+        "set_cond_area": "default"
+      }
+    },
+    {
+      "id": 10052,
+      "type": "CLIPTextEncode",
+      "pos": [
+        167.94566261509203,
+        73.38969603000007
+      ],
+      "size": [
+        414.6410000000001,
+        106.29759999999987
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 24
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            41
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.39.2",
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "worst quality, low quality, score_1, score_2, score_3, artist name, bad anatomy, bad hands, missing fingers, extra fingers, extra arms, extra legs, duplicate, twins, text, watermark, signature, simple background, upside down"
+      ],
+      "widgets_values_named": {
+        "text": "worst quality, low quality, score_1, score_2, score_3, artist name, bad anatomy, bad hands, missing fingers, extra fingers, extra arms, extra legs, duplicate, twins, text, watermark, signature, simple background, upside down"
+      }
+    },
+    {
+      "id": 10032,
+      "type": "VAELoader",
+      "pos": [
+        615.723624702828,
+        141.53849603
+      ],
+      "size": [
+        227.5691999999999,
+        59.46409999999969
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            15
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.39.2",
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "qwen_image_vae.safetensors"
+      ],
+      "widgets_values_named": {
+        "vae_name": "qwen_image_vae.safetensors"
+      }
+    },
+    {
+      "id": 11017,
+      "type": "VAEDecode",
+      "pos": [
+        853.2619040877375,
+        141.53849603
+      ],
+      "size": [
+        170.74609999999984,
+        57.712800000000016
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 14
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 15
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            34
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.39.2",
+        "Node name for S&R": "VAEDecode"
+      }
+    },
+    {
+      "id": 12011,
+      "type": "UNETLoader",
+      "pos": [
+        615.723624702828,
+        257.8006000299988
+      ],
+      "size": [
+        210,
+        105.60770000000002
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            102
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.39.2",
+        "Node name for S&R": "UNETLoader"
+      },
+      "widgets_values": [
+        "Anima\\anima-base-v1.0.safetensors",
+        "default"
+      ],
+      "widgets_values_named": {
+        "unet_name": "Anima\\anima-base-v1.0.safetensors",
+        "weight_dtype": "default"
+      }
+    },
+    {
+      "id": 10086,
+      "type": "EmptyLatentImage",
+      "pos": [
+        833.6349540877375,
+        257.8006000299988
+      ],
+      "size": [
+        210,
+        106
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            27
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.39.2",
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        1536,
+        1024,
+        1
+      ],
+      "widgets_values_named": {
+        "width": 1536,
+        "height": 1024,
+        "batch_size": 1
+      }
+    },
+    {
+      "id": 10012,
+      "type": "CLIPLoader",
+      "pos": [
+        -543.653337384909,
+        -355.5468039699994
+      ],
+      "size": [
+        270,
+        106
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            24,
+            120
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.39.2",
+        "Node name for S&R": "CLIPLoader"
+      },
+      "widgets_values": [
+        "qwen_3_06b_base.safetensors",
+        "stable_diffusion",
+        "default"
+      ],
+      "widgets_values_named": {
+        "clip_name": "qwen_3_06b_base.safetensors",
+        "type": "stable_diffusion",
+        "device": "default"
+      }
+    },
+    {
+      "id": 11002,
+      "type": "KSampler",
+      "pos": [
+        615.723624702828,
+        -389.94472397
+      ],
+      "size": [
+        422.6656999999998,
+        474
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 102
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 42
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 43
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 27
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            14
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.39.2",
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        182718429331074,
+        "fixed",
+        30,
+        4.2,
+        "euler",
+        "simple",
+        1
+      ],
+      "widgets_values_named": {
+        "seed": 182718429331074,
+        "control_after_generate": "fixed",
+        "steps": 30,
+        "cfg": 4.2,
+        "sampler_name": "euler",
+        "scheduler": "simple",
+        "denoise": 1
+      }
+    },
+    {
+      "id": 12005,
+      "type": "SaveImage",
+      "pos": [
+        1131.4450314434148,
+        -330.0057039699994
+      ],
+      "size": [
+        1041.928876593906,
+        736.8680791789483
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 34
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.39.2",
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "1000942717817123598"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "1000942717817123598"
+      }
+    },
+    {
+      "id": 12065,
+      "type": "MultiLoraSchedule",
+      "pos": [
+        153.79701486226293,
+        -405.8440881050125
+      ],
+      "size": [
+        369.3055375000007,
+        171
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "prev_hooks",
+          "shape": 7,
+          "type": "HOOKS",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "HOOKS",
+          "type": "HOOKS",
+          "links": [
+            114
+          ]
+        }
+      ],
+      "properties": {
+        "loras": [
+          {
+            "name": "Anima\\dynamicposerSlider.YaZJ.safetensors",
+            "enabled": true,
+            "strength": 4,
+            "schedule_enabled": true,
+            "start": 0,
+            "end": 30
+          }
+        ],
+        "Node name for S&R": "MultiLoraSchedule"
+      },
+      "widgets_values": [
+        [
+          {
+            "name": "Anima\\dynamicposerSlider.YaZJ.safetensors",
+            "enabled": true,
+            "strength": 4,
+            "schedule_enabled": true,
+            "start": 0,
+            "end": 30
+          }
+        ]
+      ],
+      "widgets_values_named": {
+        "lora_schedule_ui": [
+          {
+            "name": "Anima\\dynamicposerSlider.YaZJ.safetensors",
+            "enabled": true,
+            "strength": 4,
+            "schedule_enabled": true,
+            "start": 0,
+            "end": 30
+          }
+        ]
+      }
+    },
+    {
+      "id": 12071,
+      "type": "MultiPromptSchedule",
+      "pos": [
+        -204.62387556676583,
+        -405.8440881050125
+      ],
+      "size": [
+        320,
+        571
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 120
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            121
+          ]
+        }
+      ],
+      "properties": {
+        "prompts": [
+          {
+            "text": "analog horror, anime_real, score_7. score_8 , dramatic, in an abandoned hospital, dim lighting, wall lights, volumetric lighting, fog, , nightmare, impact frame contrast, reflective metal,\n  1woman, aesthetic, grim reaper, black hooded cloak, psychotic, yandere, holding a scythe, broken glass,  scary illustration,\nsilouette with glowing eyes,\nsharp focus,",
+            "end": 0.15
+          },
+          {
+            "text": "anime_real, score_7. score_8 , dramatic, in an abandoned hospital, dim lighting, wall lights, volumetric lighting, fog, , nightmare, impact frame contrast, reflective metal,\n  1woman, aesthetic, grim reaper, black hooded cloak, psychotic, yandere, holding a scythe, broken glass,  scary illustration,\nsilouette with glowing eyes,\nsharp focus,",
+            "end": 0.5
+          },
+          {
+            "text": "anime_real, score_7. score_8 , dramatic, in an abandoned hospital, dim lighting, wall lights, volumetric lighting, fog, , nightmare, impact frame contrast, reflective metal,\n  1woman, aesthetic, maid outfit, pink hair, pink eyes, psychotic, yandere, holding a scythe, broken glass,  scary illustration,\nsilouette with glowing eyes,\nsharp focus,",
+            "end": 0.6
+          },
+          {
+            "text": "anime_real, score_7. score_8 , dramatic, in an abandoned hospital, dim lighting, wall lights, volumetric lighting, fog, , nightmare, impact frame contrast, reflective metal,\n  1woman, aesthetic, maid outfit, pink hair, pink eyes, psychotic, yandere, holding a scythe, broken glass,  scary illustration,\nsilouette with glowing eyes,\nbackground light particles, bright sparks,\nsharp focus,",
+            "end": 1
+          }
+        ],
+        "Node name for S&R": "MultiPromptSchedule"
+      },
+      "widgets_values": [
+        [
+          {
+            "text": "analog horror, anime_real, score_7. score_8 , dramatic, in an abandoned hospital, dim lighting, wall lights, volumetric lighting, fog, , nightmare, impact frame contrast, reflective metal,\n  1woman, aesthetic, grim reaper, black hooded cloak, psychotic, yandere, holding a scythe, broken glass,  scary illustration,\nsilouette with glowing eyes,\nsharp focus,",
+            "end": 0.15
+          },
+          {
+            "text": "anime_real, score_7. score_8 , dramatic, in an abandoned hospital, dim lighting, wall lights, volumetric lighting, fog, , nightmare, impact frame contrast, reflective metal,\n  1woman, aesthetic, grim reaper, black hooded cloak, psychotic, yandere, holding a scythe, broken glass,  scary illustration,\nsilouette with glowing eyes,\nsharp focus,",
+            "end": 0.5
+          },
+          {
+            "text": "anime_real, score_7. score_8 , dramatic, in an abandoned hospital, dim lighting, wall lights, volumetric lighting, fog, , nightmare, impact frame contrast, reflective metal,\n  1woman, aesthetic, maid outfit, pink hair, pink eyes, psychotic, yandere, holding a scythe, broken glass,  scary illustration,\nsilouette with glowing eyes,\nsharp focus,",
+            "end": 0.6
+          },
+          {
+            "text": "anime_real, score_7. score_8 , dramatic, in an abandoned hospital, dim lighting, wall lights, volumetric lighting, fog, , nightmare, impact frame contrast, reflective metal,\n  1woman, aesthetic, maid outfit, pink hair, pink eyes, psychotic, yandere, holding a scythe, broken glass,  scary illustration,\nsilouette with glowing eyes,\nbackground light particles, bright sparks,\nsharp focus,",
+            "end": 1
+          }
+        ]
+      ],
+      "widgets_values_named": {
+        "prompt_schedule_ui": [
+          {
+            "text": "analog horror, anime_real, score_7. score_8 , dramatic, in an abandoned hospital, dim lighting, wall lights, volumetric lighting, fog, , nightmare, impact frame contrast, reflective metal,\n  1woman, aesthetic, grim reaper, black hooded cloak, psychotic, yandere, holding a scythe, broken glass,  scary illustration,\nsilouette with glowing eyes,\nsharp focus,",
+            "end": 0.15
+          },
+          {
+            "text": "anime_real, score_7. score_8 , dramatic, in an abandoned hospital, dim lighting, wall lights, volumetric lighting, fog, , nightmare, impact frame contrast, reflective metal,\n  1woman, aesthetic, grim reaper, black hooded cloak, psychotic, yandere, holding a scythe, broken glass,  scary illustration,\nsilouette with glowing eyes,\nsharp focus,",
+            "end": 0.5
+          },
+          {
+            "text": "anime_real, score_7. score_8 , dramatic, in an abandoned hospital, dim lighting, wall lights, volumetric lighting, fog, , nightmare, impact frame contrast, reflective metal,\n  1woman, aesthetic, maid outfit, pink hair, pink eyes, psychotic, yandere, holding a scythe, broken glass,  scary illustration,\nsilouette with glowing eyes,\nsharp focus,",
+            "end": 0.6
+          },
+          {
+            "text": "anime_real, score_7. score_8 , dramatic, in an abandoned hospital, dim lighting, wall lights, volumetric lighting, fog, , nightmare, impact frame contrast, reflective metal,\n  1woman, aesthetic, maid outfit, pink hair, pink eyes, psychotic, yandere, holding a scythe, broken glass,  scary illustration,\nsilouette with glowing eyes,\nbackground light particles, bright sparks,\nsharp focus,",
+            "end": 1
+          }
+        ]
+      }
+    }
+  ],
+  "links": [
+    [
+      14,
+      11002,
+      0,
+      11017,
+      0,
+      "LATENT"
+    ],
+    [
+      15,
+      10032,
+      0,
+      11017,
+      1,
+      "VAE"
+    ],
+    [
+      24,
+      10012,
+      0,
+      10052,
+      0,
+      "CLIP"
+    ],
+    [
+      27,
+      10086,
+      0,
+      11002,
+      3,
+      "LATENT"
+    ],
+    [
+      34,
+      11017,
+      0,
+      12005,
+      0,
+      "IMAGE"
+    ],
+    [
+      41,
+      10052,
+      0,
+      12015,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      42,
+      12015,
+      0,
+      11002,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      43,
+      12015,
+      1,
+      11002,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      102,
+      12011,
+      0,
+      11002,
+      0,
+      "MODEL"
+    ],
+    [
+      114,
+      12065,
+      0,
+      12015,
+      3,
+      "HOOKS"
+    ],
+    [
+      120,
+      10012,
+      0,
+      12071,
+      0,
+      "CLIP"
+    ],
+    [
+      121,
+      12071,
+      0,
+      12015,
+      0,
+      "CONDITIONING"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.9090909090909094,
+      "offset": [
+        617.7123755667644,
+        650.5836057283424
+      ]
+    },
+    "frontendVersion": "1.55.16",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4,
+  "seed_widgets": {
+    "11002": 0
+  }
+}
