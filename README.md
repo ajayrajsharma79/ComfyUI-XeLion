@@ -1,12 +1,10 @@
-<<<<<<< HEAD
+
 # ComfyUI - XeLion
 
 ## Nodes in a workflow
 
 ![Multi Prompt Scheduler and Multi LoRA Schedule used together](docs/images/scheduler-workflow.png)
-=======
-# ComfyUI Nodes by Xe Lion
->>>>>>> d99c1d2c9216bafbf80b967d5b2902029fce1fce
+
 
 ## Multi LoRA Schedule
 
